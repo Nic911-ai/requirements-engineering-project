@@ -6,7 +6,7 @@
 - Equipment manager
 
 2.Stakeholder needs and concerns
-Student - Finding and booking equipment
+. Student - Finding and booking equipment
 Lecturer - Getting equipment when needed for teaching
 Equipment technician - Managing equipment and returns
 Department administrator - Managing bookings and records

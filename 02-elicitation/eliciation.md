@@ -1,9 +1,9 @@
 1.Stakeholders
-1.Student
--Lecturer
--Equipment technician
--Department administrator
--Equipment manager
+- Student
+- Lecturer
+- Equipment technician
+- Department administrator
+- Equipment manager
 
 2.Stakeholder needs and concerns
 Student - Finding and booking equipment

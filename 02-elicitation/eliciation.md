@@ -1,5 +1,5 @@
 1.Stakeholders
-##-Student
+1.Student
 -Lecturer
 -Equipment technician
 -Department administrator

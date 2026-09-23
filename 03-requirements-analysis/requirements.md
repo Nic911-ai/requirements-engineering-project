@@ -26,12 +26,13 @@ c. When should staff be allowed to create, edit or delete a booking and when sho
 - When can staff edit, create or delete a bookings?
 - How are reminder be sent?
 d. They system shall send students an email confirmation immediately after they successfully book a study room and send reminder in 24 hours.
-4.Fuctional Requirements
+
+4. Fuctional Requirements
 | ID     |       REQUIREMENT      |        Source        |    How could we verify it?     |
-| ------ | ---------------------- | -------------------- |--------------------------------|
-| FR-01  | The system shall allow an authorised user to view equipment availability for a selected date  |
-| FR-02  | The system shall allow an authorised technician to confirm booking only when the selected equipment is available  | The technician needs to know whether equipment is available before confirming a booking | Try booking equipment that is already unavailable. The system Should prevent the technician from confirming the booking.
-| FR-03  | The system shall notify the user when their equipment booking is successfully confirmed. | Booking notification requirement, equipment booking process | Make a booking and check hat user receives a notification after the booking is confirmed.
+| --- | --- | --- |---|
+| FR-01  | The system shall allow an authorised user to view equipment availability for a selected date|
+| FR-02  | The system shall allow an authorised technician to confirm booking only when the selected equipment is available|The technician needs to know whether equipment is available before confirming a booking | Try booking equipment that is already unavailable. The system Should prevent the technician from confirming the booking.|
+| FR-03  | The system shall notify the user when their equipment booking is successfully confirmed. | Booking notification requirement, equipment booking process | Make a booking and check hat user receives a notification after the booking is confirmed.|
 5.Quality Requirements
 6.Project Application
 7.Reflection

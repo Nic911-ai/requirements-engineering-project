@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equipment Request · 5 Screens</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #eef2f7;
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    color: #1e293b;
+    line-height: 1.55;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+  }
+  .app { width: 100%; max-width: 780px; margin: 0 auto; }
+
+  /* ---- tracker ---- */
+  .tracker {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.4rem;
+    background: #fff;
+    border-radius: 14px;
+    padding: 0.7rem 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+  }
+  .tracker-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #94a3b8;
+    white-space: nowrap;
+  }
+  .tracker-item .dot {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #64748b;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .tracker-item.active { color: #0f172a; }
+  .tracker-item.active .dot {
+    background: #0f172a; color: #fff;
+    box-shadow: 0 0 0 4px rgba(15,23,42,0.12);
+  }
+  .tracker-item.done { color: #166534; }
+  .tracker-item.done .dot { background: #22c55e; color: #fff; }
+  .tracker-line { width: 16px; height: 2px; background: #e2e8f0; margin: 0 0.3rem; flex-shrink: 0; }
+  @media (max-width: 620px) {
+    .tracker-item .label { display: none; }
+  }
+
+  /* ---- frame ---- */
+  .frame {
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 30px rgba(15,23,42,0.06);
+    overflow: hidden;
+  }
+  .frame-header {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 0.8rem 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .frame-header .tag {
+    background: #3b82f6;
+    padding: 0.22rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* ---- screen ---- */
+  .screen { display: none; padding: 2rem 1.8rem 2.2rem; }
+  .screen.show { display: block; animation: slideIn 0.28s ease; }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .screen h2 { font-size: 1.7rem; font-weight: 600; color: #0f172a; margin-bottom: 0.2rem; }
+  .screen .sub { font-size: 0.98rem; color: #64748b; margin-bottom: 1.8rem; }
+
+  /* ---- cards ---- */
+  .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.4rem; }
+  @media (max-width: 520px) { .card-grid { grid-template-columns: 1fr; } }
+  .card {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.8rem 0.8rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.18s;
+    user-select: none;
+  }
+  .card:hover { border-color: #3b82f6; background: #eff6ff; transform: translateY(-3px); box-shadow: 0 8px 20px rgba(59,130,246,0.12); }
+  .card.picked { border-color: #2563eb; background: #eff6ff; box-shadow: 0 0 0 4px rgba(37,99,235,0.15); }
+  .card .emoji { font-size: 2.2rem; display: block; margin-bottom: 0.5rem; }
+  .card .name { font-weight: 700; font-size: 1.05rem; color: #1e293b; }
+  .card .hint { font-size: 0.72rem; color: #94a3b8; margin-top: 0.2rem; }
+  .card.picked .hint { color: #2563eb; font-weight: 600; }
+
+  /* ---- details panel ---- */
+  .details-panel {
+    background: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.4rem 1.5rem;
+    margin: 1.2rem 0 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .details-row { display: flex; gap: 1rem; font-size: 0.95rem; }
+  .details-row .key { font-weight: 700; color: #475569; width: 120px; flex-shrink: 0; }
+  .details-row .val { color: #0f172a; font-weight: 500; }
+  .badge { display: inline-block; padding: 0.15rem 0.65rem; border-radius: 20px; font-size: 0.78rem; font-weight: 600; }
+  .badge.green { background: #dcfce7; color: #166534; }
+  .badge.amber { background: #fef3c7; color: #92400e; }
+
+  /* ---- form ---- */
+  .form-field { margin-bottom: 1.3rem; }
+  .form-field label { display: block; font-size: 0.88rem; font-weight: 700; color: #334155; margin-bottom: 0.35rem; }
+  .form-field label .req { color: #dc2626; margin-left: 2px; }
+  .form-field input {
+    width: 100%; max-width: 340px;
+    padding: 0.75rem 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem; font-family: inherit; color: #0f172a;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .form-field input:focus { outline: none; border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59,130,246,0.15); }
+  .form-field input.invalid { border-color: #dc2626; background: #fef2f2; }
+  .form-field input.invalid:focus { box-shadow: 0 0 0 3px rgba(220,38,38,0.15); }
+
+  .error-msg {
+    display: none;
+    font-size: 0.82rem; color: #dc2626; font-weight: 600;
+    margin-top: 0.3rem; align-items: center; gap: 0.3rem;
+  }
+  .error-msg.show { display: flex; }
+
+  /* ---- warning box (screen 4) ---- */
+  .warning-box {
+    display: none;
+    background: #fef2f2;
+    border: 2px solid #fecaca;
+    border-radius: 8px;
+    padding: 0.75rem 1.1rem;
+    color: #b91c1c;
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-top: 0.5rem;
+    max-width: 340px;
+  }
+  .warning-box.show { display: block; }
+
+  /* ---- buttons ---- */
+  .actions { display: flex; gap: 0.8rem; align-items: center; flex-wrap: wrap; margin-top: 0.8rem; }
+  .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .btn-primary { background: #0f172a; color: #fff; }
+  .btn-primary:hover:not(:disabled) { background: #1e293b; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(15,23,42,0.2); }
+  .btn-primary:disabled { background: #cbd5e1; color: #94a3b8; cursor: not-allowed; }
+  .btn-ghost { background: transparent; color: #475569; padding: 0.7rem 1.1rem; }
+  .btn-ghost:hover { background: #f1f5f9; color: #0f172a; }
+
+  /* ---- toast ---- */
+  .toast {
+    position: fixed;
+    bottom: 1.8rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(24px);
+    background: #0f172a;
+    color: #fff;
+    padding: 0.8rem 1.8rem;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 999;
+    max-width: 90vw;
+    text-align: center;
+  }
+  .toast.up { opacity: 1; transform: translateX(-50%) translateY(0); }
+  .toast.good { background: #166534; }
+  .toast.bad  { background: #b91c1c; }
+
+  /* ---- summary ---- */
+  .summary {
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.6rem;
+    border: 1px solid #e2e8f0;
+  }
+  .summary .emoji { font-size: 1.6rem; }
+  .summary .info .k {
+    font-size: 0.72rem; color: #64748b; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .summary .info .v { font-size: 1rem; font-weight: 700; color: #0f172a; }
+
+  /* ---- notes ---- */
+  .note {
+    font-size: 0.85rem; color: #64748b; font-style: italic;
+    margin-top: 1.2rem; padding: 0.6rem 0.9rem;
+    background: #f8fafc; border-radius: 8px;
+    border-left: 3px solid #3b82f6;
+  }
+  .note.candidate {
+    background: #fef9c3;
+    border-left: 3px solid #eab308;
+    color: #854d0e;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* ---- acknowledgement (screen 5) ---- */
+  .ack-panel {
+    background: #f0fdf4;
+    border: 2px solid #bbf7d0;
+    border-radius: 12px;
+    padding: 1.4rem 1.6rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.9rem;
+    margin: 1.2rem 0 1.6rem;
+  }
+  .ack-icon {
+    background: #22c55e; color: #fff;
+    width: 32px; height: 32px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; flex-shrink: 0;
+  }
+  .ack-text { font-size: 1.02rem; color: #166534; font-weight: 500; line-height: 1.5; }
+  .ack-text strong { display: block; margin-top: 0.35rem; color: #14532d; }
+
+  .footer-note { text-align: center; font-size: 0.78rem; color: #94a3b8; margin-top: 1.5rem; }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ================= TRACKER ================= -->
+  <div class="tracker">
+    <div class="tracker-item active" id="t1"><div class="dot">1</div><span class="label">Browse</span></div>
+    <div class="tracker-line"></div>
+    <div class="tracker-item" id="t2"><div class="dot">2</div><span class="label">Details</span></div>
+    <div class="tracker-line"></div>
+    <div class="tracker-item" id="t3"><div class="dot">3</div><span class="label">Request</span></div>
+    <div class="tracker-line"></div>
+    <div class="tracker-item" id="t4"><div class="dot">4</div><span class="label">Missing</span></div>
+    <div class="tracker-line"></div>
+    <div class="tracker-item" id="t5"><div class="dot">5</div><span class="label">Submitted</span></div>
+  </div>
+
+  <!-- ================= FRAME ================= -->
+  <div class="frame">
+    <div class="frame-header">
+      <span>College equipment · Student request</span>
+      <span class="tag" id="tag">SCREEN 1/5</span>
+    </div>
+
+    <!-- ---------- SCREEN 1 ---------- -->
+    <div class="screen show" id="s1">
+      <h2>Browse equipment</h2>
+      <p class="sub">Choose an item to explore before requesting it.</p>
+      <div class="card-grid">
+        <div class="card" data-item="Laptop" onclick="pickItem(this)">
+          <span class="emoji">💻</span><div class="name">Laptop</div><div class="hint">Click to select</div>
+        </div>
+        <div class="card" data-item="Camera" onclick="pickItem(this)">
+          <span class="emoji">📷</span><div class="name">Camera</div><div class="hint">Click to select</div>
+        </div>
+        <div class="card" data-item="Projector" onclick="pickItem(this)">
+          <span class="emoji">📽️</span><div class="name">Projector</div><div class="hint">Click to select</div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" id="next1" disabled onclick="goTo(2)">Continue to details →</button>
+      </div>
+      <p class="note">Select a card above to enable the continue button (EB01).</p>
+    </div>
+
+    <!-- ---------- SCREEN 2 ---------- -->
+    <div class="screen" id="s2">
+      <h2>Equipment details</h2>
+      <p class="sub" id="s2Sub">Review the selected item before requesting.</p>
+      <div class="details-panel">
+        <div class="details-row"><span class="key">Item name</span><span class="val" id="dName">—</span></div>
+        <div class="details-row"><span class="key">Availability</span><span class="val" id="dAvail">—</span></div>
+        <div class="details-row"><span class="key">Notes</span><span class="val" style="font-weight:400; color:#475569;">Details remain limited in this prototype (EB02).</span></div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="goTo(3)">Request this item →</button>
+        <button class="btn btn-ghost" onclick="goTo(1)">← Back</button>
+      </div>
+    </div>
+
+    <!-- ---------- SCREEN 3 ---------- -->
+    <div class="screen" id="s3">
+      <h2>Request equipment</h2>
+      <p class="sub" id="s3Sub">Enter the dates you need the item.</p>
+      <div class="summary">
+        <span class="emoji" id="s3Emoji">💻</span>
+        <div class="info"><div class="k">Selected item</div><div class="v" id="s3Name">—</div></div>
+      </div>
+      <div class="form-field">
+        <label>Start date <span class="req">*</span></label>
+        <input type="date" id="i3Start" />
+        <div class="error-msg" id="e3Start">⚠️ Please enter a start date.</div>
+      </div>
+      <div class="form-field">
+        <label>End date <span class="req">*</span></label>
+        <input type="date" id="i3End" />
+        <div class="error-msg" id="e3End">⚠️ Please enter an end date before continuing.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="validateScreen3()">Continue</button>
+        <button class="btn btn-ghost" onclick="goTo(2)">← Back</button>
+      </div>
+      <p class="note">This is a request, not an approval. It will be sent to staff for review (EB03).</p>
+    </div>
+
+    <!-- ---------- SCREEN 4 ---------- -->
+    <div class="screen" id="s4">
+      <h2>Request equipment</h2>
+      <p class="sub" id="s4Sub">Enter the dates you need the item.</p>
+      <div class="summary">
+        <span class="emoji" id="s4Emoji">💻</span>
+        <div class="info"><div class="k">Selected item</div><div class="v" id="s4Name">—</div></div>
+      </div>
+      <div class="form-field">
+        <label>Start date <span class="req">*</span></label>
+        <input type="date" id="i4Start" value="2024-11-03" />
+      </div>
+      <div class="form-field">
+        <label>End date <span class="req">*</span></label>
+        <input type="date" id="i4End" class="invalid" />
+        <div class="warning-box show">⚠️ Please enter an end date.</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="goTo(5)">Continue</button>
+        <button class="btn btn-ghost" onclick="goTo(3)">← Back</button>
+      </div>
+      <p class="note candidate">
+        Candidate rule: must both dates be entered before submission?
+        <br><span style="font-style:normal; color:#92400e;">Proposed validation — not an agreed business rule.</span>
+      </p>
+    </div>
+
+    <!-- ---------- SCREEN 5 ---------- -->
+    <div class="screen" id="s5">
+      <h2>Request submitted</h2>
+      <div class="ack-panel">
+        <span class="ack-icon">✓</span>
+        <p class="ack-text">
+          Your request has been sent for staff review.
+          <strong>This is not a confirmed booking.</strong>
+        </p>
+      </div>
+      <div class="actions">
+        <button class="btn btn-primary" onclick="resetAll()">Return to equipment list</button>
+      </div>
+      <p class="note">Screen 5 describes the <strong>request stage</strong> (EB04), not the later staff approval outcome.</p>
+    </div>
+
+  </div><!-- /frame -->
+
+  <p class="footer-note">5-screen prototype · Screens 1–5 · EB01–EB04 · Candidate rule on Screen 4</p>
+</div>
+
+<div class="toast" id="toastBox"></div>
+
+<script>
+/* ============================================================
+   STATE
+   ============================================================ */
+var state = {
+  item: null,
+  icons: { Laptop: '💻', Camera: '📷', Projector: '📽️' }
+};
+
+/* ============================================================
+   DOM REFERENCES
+   ============================================================ */
+var screens = {
+  1: document.getElementById('s1'),
+  2: document.getElementById('s2'),
+  3: document.getElementById('s3'),
+  4: document.getElementById('s4'),
+  5: document.getElementById('s5')
+};
+
+var tracks = {
+  1: document.getElementById('t1'),
+  2: document.getElementById('t2'),
+  3: document.getElementById('t3'),
+  4: document.getElementById('t4'),
+  5: document.getElementById('t5')
+};
+
+var tag    = document.getElementById('tag');
+var next1  = document.getElementById('next1');
+
+var dName   = document.getElementById('dName');
+var dAvail  = document.getElementById('dAvail');
+var s2Sub   = document.getElementById('s2Sub');
+
+var s3Sub   = document.getElementById('s3Sub');
+var s3Emoji = document.getElementById('s3Emoji');
+var s3Name  = document.getElementById('s3Name');
+var i3Start = document.getElementById('i3Start');
+var i3End   = document.getElementById('i3End');
+var e3Start = document.getElementById('e3Start');
+var e3End   = document.getElementById('e3End');
+
+var s4Sub   = document.getElementById('s4Sub');
+var s4Emoji = document.getElementById('s4Emoji');
+var s4Name  = document.getElementById('s4Name');
+var i4Start = document.getElementById('i4Start');
+var i4End   = document.getElementById('i4End');
+
+var toastBox = document.getElementById('toastBox');
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+var toastTimer = null;
+function toast(msg, type) {
+  toastBox.textContent = msg;
+  toastBox.className = 'toast ' + (type || '') + ' up';
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () {
+    toastBox.classList.remove('up');
+  }, 2800);
+}
+
+/* ============================================================
+   TRACKER + SCREEN SWITCHER
+   ============================================================ */
+function updateTracker(active) {
+  for (var n = 1; n <= 5; n++) {
+    var el = tracks[n];
+    el.classList.remove('active', 'done');
+    if (n < active) el.classList.add('done');
+    if (n === active) el.classList.add('active');
+  }
+}
+
+function goTo(n) {
+  // hide all
+  for (var k = 1; k <= 5; k++) {
+    screens[k].classList.remove('show');
+  }
+  // show target
+  screens[n].classList.add('show');
+  tag.textContent = 'SCREEN ' + n + '/5';
+  updateTracker(n);
+
+  // populate dynamic content when needed
+  if (n === 2) populateScreen2();
+  if (n === 3) populateScreen3();
+  if (n === 4) populateScreen4();
+
+  // focus + scroll
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (n === 3) setTimeout(function () { i3Start.focus(); }, 200);
+}
+
+/* ============================================================
+   SCREEN 1 — PICK AN ITEM
+   ============================================================ */
+function pickItem(cardEl) {
+  var item = cardEl.getAttribute('data-item');
+
+  // clear all
+  var allCards = document.querySelectorAll('.card');
+  for (var i = 0; i < allCards.length; i++) {
+    allCards[i].classList.remove('picked');
+    allCards[i].querySelector('.hint').textContent = 'Click to select';
+  }
+
+  // mark chosen
+  cardEl.classList.add('picked');
+  cardEl.querySelector('.hint').textContent = '✓ Selected';
+
+  state.item = item;
+  next1.disabled = false;
+
+  toast(item + ' selected — ready to continue.', 'good');
+}
+
+/* ============================================================
+   SCREEN 2 — POPULATE DETAILS
+   ============================================================ */
+function populateScreen2() {
+  if (!state.item) {
+    // fallback if user lands here without a choice
+    state.item = 'Laptop';
+  }
+  var item = state.item;
+  s2Sub.textContent = 'Review the ' + item.toLowerCase() + ' before requesting.';
+  dName.textContent = item;
+
+  var availMap = {
+    Laptop:    { text: 'Available · 3 units',                    cls: 'green' },
+    Camera:    { text: 'Available · 1 unit',                     cls: 'green' },
+    Projector: { text: 'Limited · 1 unit (booked 2–4 Nov)',      cls: 'amber' }
+  };
+  var a = availMap[item] || { text: 'Checking…', cls: 'green' };
+  dAvail.innerHTML = '<span class="badge ' + a.cls + '">' + a.text + '</span>';
+}
+
+/* ============================================================
+   SCREEN 3 — POPULATE + VALIDATE
+   ============================================================ */
+function populateScreen3() {
+  if (!state.item) state.item = 'Laptop';
+  var item = state.item;
+  s3Emoji.textContent = state.icons[item] || '📦';
+  s3Name.textContent  = item;
+  s3Sub.textContent   = 'Enter the dates you need the ' + item.toLowerCase() + '.';
+  // clear fields each time we enter screen 3 fresh
+  i3Start.value = '';
+  i3End.value = '';
+  clearScreen3Errors();
+}
+
+function clearScreen3Errors() {
+  i3Start.classList.remove('invalid');
+  i3End.classList.remove('invalid');
+  e3Start.classList.remove('show');
+  e3End.classList.remove('show');
+}
+
+function validateScreen3() {
+  clearScreen3Errors();
+  var start = i3Start.value.trim();
+  var end   = i3End.value.trim();
+  var valid = true;
+
+  if (!start) {
+    i3Start.classList.add('invalid');
+    e3Start.classList.add('show');
+    valid = false;
+  }
+  if (!end) {
+    i3End.classList.add('invalid');
+    e3End.classList.add('show');
+    valid = false;
+  }
+
+  // If both present but end before start
+  if (start && end && end < start) {
+    i3End.classList.add('invalid');
+    e3End.textContent = '⚠️ End date cannot be before the start date.';
+    e3End.classList.add('show');
+    valid = false;
+  } else {
+    e3End.textContent = '⚠️ Please enter an end date before continuing.';
+  }
+
+  if (!valid) {
+    toast('Please fix the highlighted fields.', 'bad');
+    if (!start) i3Start.focus();
+    else i3End.focus();
+    return;
+  }
+
+  // success — proceed to Screen 4 (the missing-date / candidate state)
+  toast('Dates captured — continuing.', 'good');
+  goTo(4);
+}
+
+/* ============================================================
+   SCREEN 4 — POPULATE (illustrative missing end date)
+   ============================================================ */
+function populateScreen4() {
+  if (!state.item) state.item = 'Laptop';
+  var item = state.item;
+  s4Emoji.textContent = state.icons[item] || '📦';
+  s4Name.textContent  = item;
+  s4Sub.textContent   = 'Enter the dates you need the ' + item.toLowerCase() + '.';
+
+  // illustrative dummy date, end left blank to demonstrate the candidate rule
+  i4Start.value = '2024-11-03';
+  i4End.value   = '';
+  i4End.classList.add('invalid');
+}
+
+/* ============================================================
+   RESET
+   ============================================================ */
+function resetAll() {
+  state.item = null;
+
+  // clear cards
+  var allCards = document.querySelectorAll('.card');
+  for (var i = 0; i < allCards.length; i++) {
+    allCards[i].classList.remove('picked');
+    allCards[i].querySelector('.hint').textContent = 'Click to select';
+  }
+
+  next1.disabled = true;
+
+  // clear form fields
+  i3Start.value = '';
+  i3End.value = '';
+  i4Start.value = '';
+  i4End.value = '';
+  clearScreen3Errors();
+
+  goTo(1);
+  toast('Demo reset — start again from Screen 1.', '');
+}
+
+/* ============================================================
+   LIVE ERROR CLEARING ON SCREEN 3
+   ============================================================ */
+i3Start.addEventListener('input', function () {
+  i3Start.classList.remove('invalid');
+  e3Start.classList.remove('show');
+});
+i3End.addEventListener('input', function () {
+  i3End.classList.remove('invalid');
+  e3End.classList.remove('show');
+});
+
+/* ============================================================
+   INIT — always start on Screen 1
+   ============================================================ */
+goTo(1);
+</script>
+
+</body>
+</html>

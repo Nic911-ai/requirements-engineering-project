@@ -41,21 +41,21 @@ The following information is supported by the practical scenario:
 - Students may prefer to cancel or change appointments easily, while support staff may need sufficient notice to manage their schedules. This is a possible conflict that requires investigation. The cancellation policy has not been confirmed.
 
 5. Goals
-1.	The system should help the college to organise student support appointments.
-2.	The system should help students access information about their appointments.
-3.	The system should help authorised college staff manage appointment arrangements.
+- The system should help the college to organise student support appointments.
+- The system should help students access information about their appointments.
+- The system should help authorised college staff manage appointment arrangements.
 
 6. Scope
 6.1 Proposed In-Scope Areas
-1.	Student support appointment booking.
-2.	Viewing appointment information.
-3.	Appointment cancellation or changes.
-4.	Staff management of appointment arrangements.
+- Student support appointment booking.
+- Viewing appointment information.
+- Appointment cancellation or changes.
+- Staff management of appointment arrangements.
 
 6.2 Out-of-Scope or Not Yet Established
-1.	Online payment or appointment fees.
-2.	Video conferencing or online consultation.
-3.	Automatic integration with external college systems.
+- Online payment or appointment fees.
+- Video conferencing or online consultation.
+- Automatic integration with external college systems.
 
 
 7. Candidate Requirements
@@ -87,9 +87,9 @@ Problem:
 •	It does not provide a measurable way to evaluate usability.
 
 Clarification questions:
-1.	Is the system intended for students, support staff, administrators or all three?
-2.	Which tasks should users be able to complete easily?
-3.	How will the college determine whether the system is easy to use?
+- Is the system intended for students, support staff, administrators or all three?
+- Which tasks should users be able to complete easily?
+- How will the college determine whether the system is easy to use?
 
 Improved candidate requirement:
 "The system shall provide students with a clear process for requesting and viewing student support appointments."
@@ -103,9 +103,9 @@ Problem:
 •	It does not explain how security should be tested.
 
 Clarification questions:
-1.	Which student and appointment information must be protected?
-2.	Which user roles are allowed to access appointment information?
-3.	What should happen when an unauthorised user tries to access restricted information?
+- Which student and appointment information must be protected?
+- Which user roles are allowed to access appointment information?
+- What should happen when an unauthorised user tries to access restricted information?
 
 Improved candidate requirement:
 "The system shall restrict access to student appointment information to authorised users."

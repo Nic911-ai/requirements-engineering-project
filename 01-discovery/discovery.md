@@ -74,7 +74,7 @@ The following information is supported by the practical scenario:
 
 
 | ID | Candidate quality requirement | Why it matters | How it could be checked |
-|---|---|---|
+|---|---|---|---|
 | NFR-01 | The system should protect student appointment information from unauthorised access. | Appointment information may contain private student details. | Review access permissions and conduct authorised access tests. |
 | NFR-02| The system should be easy for students and staff to understand and use.	 | Users should be able to complete appointment-related tasks without unnecessary confusion. | Conduct usability testing with representative users.
 The exact security controls and usability acceptance criteria still need to be agreed. |

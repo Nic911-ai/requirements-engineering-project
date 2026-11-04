@@ -18,12 +18,12 @@ The following information is supported by the practical scenario:
 
 | ID	| Unknown	| Why it matters |
 |---|---|---|
-| U-01 |	Who is allowed to create an appointment?	Determines who can use the booking function. |
-| U-02 |	Who is allowed to cancel an appointment?	Determines cancellation permissions. |
-| U-03 | What types of student support appointments are available?	Helps identify the information required when booking. |
-| U-04 | How are available appointment dates and times determined?	Helps establish the appointment scheduling process. |
-| U-05 | Does an appointment require staff approval?	Determines whether a booking is immediately confirmed or requires review. |
-| U-06 | What happens when a student misses an appointment?	May affect appointment management rules. |
+| U-01 |	Who is allowed to create an appointment? | Determines who can use the booking function. |
+| U-02 |	Who is allowed to cancel an appointment?	| Determines cancellation permissions. |
+| U-03 | What types of student support appointments are available?	| Helps identify the information required when booking. |
+| U-04 | How are available appointment dates and times determined? | Helps establish the appointment scheduling process. |
+| U-05 | Does an appointment require staff approval? | Determines whether a booking is immediately confirmed or requires review. |
+| U-06 | What happens when a student misses an appointment?	| May affect appointment management rules. |
 
 
 4. Stakeholders

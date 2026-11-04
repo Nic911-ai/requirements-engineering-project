@@ -1,17 +1,17 @@
 #Week 1 - Initial Discovery
 1. Facts
 The following information is supported by the practical scenario:
-1.	The selected project scenario is the College Student Support Appointment System.
-2.	The project focuses on student support appointments.
-3.	Appointment cancellation is an issue that requires clarification.
-4.	The practical identifies a support administrator as a possible source of information about appointment cancellation.
-5.	The system is being investigated as part of a Requirements Engineering project.
+- The selected project scenario is the College Student Support Appointment System.
+- The project focuses on student support appointments.
+- Appointment cancellation is an issue that requires clarification.
+- The practical identifies a support administrator as a possible source of information about appointment cancellation.
+- The system is being investigated as part of a Requirements Engineering project.
 
 2. Assumptions
-1.	Students may need to arrange appointments to receive support from the college.
-2.	Support staff may need to view appointment information.
-3.	A support administrator may be involved in managing appointment arrangements.
-4.	Students or authorised staff may need to cancel or change appointments.
+- Students may need to arrange appointments to receive support from the college.
+- Support staff may need to view appointment information.
+- A support administrator may be involved in managing appointment arrangements.
+- Students or authorised staff may need to cancel or change appointments.
 
 3. Unknowns
 
@@ -71,6 +71,8 @@ The following information is supported by the practical scenario:
 
 
 7.2 Non-Functional Requirements
+
+
 | ID | Candidate quality requirement | Why it matters | How it could be checked |
 |---|---|---|
 | NFR-01 | The system should protect student appointment information from unauthorised access. | Appointment information may contain private student details. | Review access permissions and conduct authorised access tests. |

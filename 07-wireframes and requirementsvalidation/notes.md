@@ -74,6 +74,8 @@ Proposed message:
 Open question: Does submission immediately confirm an appointment, or does staff review the request first?
 
 4. Requirements Mapping
+
+
 | Screen | Related requirement | Status |
 |---|---|---|
 | Screen 1 | FR-01 — Request an appointment	| Proposed entry point |
@@ -82,7 +84,7 @@ Open question: Does submission immediately confirm an appointment, or does staff
 | Screen 4	| FR-01 — Request an appointment | Proposed review step |
 | Screen 5	| FR-01 — Request an appointment	| Proposed submission acknowledgement |
 
-6. Unknowns and Assumptions
+5. Unknowns and Assumptions
 - The available support service categories are unknown.
 - The required student information is unknown.
 - Appointment availability rules are unknown.

@@ -30,44 +30,44 @@ Part C — Create wireframes
 - User journey: A student starts an appointment request, identifies the support service, enters the requested information, reviews the request and submits it. This is a proposed journey and requires confirmation from stakeholders.
 
 2. Screen Descriptions
-Screen 1 — Student Booking System
+1. Screen 1 — Student Booking System
 Purpose: Provide an entry point for students.
 Proposed elements:
-•	Student Booking System heading.
-•	Short introduction to the service.
-•	Start Appointment Request button.
+- Student Booking System heading.
+- Short introduction to the service.
+- Start Appointment Request button.
 
-Screen 2 — Select Support Service
+2. Screen 2 — Select Support Service
 Purpose: Allow the student to identify the support service they need.
 Proposed elements:
-•	Available support services placeholder.
-•	Service selection area.
-•	Continue button.
+- Available support services placeholder.
+- Service selection area.
+- Continue button.
 Open question: What support services does the college provide?
 
-Screen 3 — Appointment Request
+3. Screen 3 — Appointment Request
 Purpose: Collect information required for an appointment request.
 Proposed elements:
-•	Student information fields.
-•	Preferred date.
-•	Preferred time.
-•	Additional information field, if required.
+- Student information fields.
+- Preferred date.
+- Preferred time.
+- Additional information field, if required.
 Open questions:
-•	Which student details are required?
-•	Are students allowed to choose their preferred date and time?
-•	How is appointment availability determined?
+- Which student details are required?
+- Are students allowed to choose their preferred date and time?
+- How is appointment availability determined?
 
-Screen 4 — Review Appointment Request
+4. Screen 4 — Review Appointment Request
 Purpose: Allow students to check the information they have entered.
 Proposed elements:
-•	Selected support service.
-•	Student information.
-•	Requested date and time.
-•	Back button.
-•	Submit Request button.
+- Selected support service.
+- Student information.
+- Requested date and time.
+- Back button.
+- Submit Request button.
 Open question: Is a review step required by the college?
 
-Screen 5 — Request Submitted
+5. Screen 5 — Request Submitted
 Purpose: Provide feedback after the request is submitted.
 Proposed message:
 "Your appointment request has been submitted. Please refer to the appointment status for further information."

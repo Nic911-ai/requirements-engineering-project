@@ -1,0 +1,2 @@
+.form{max-width:680px}.dates{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.summary{border:2px dashed var(--navy2);margin-top:1rem}
+.success{text-align:center;max-width:560px;margin:2rem auto}.success .tick{font-size:3rem}.success dl{text-align:left}

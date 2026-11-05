@@ -1,0 +1,3 @@
+@media(max-width:900px){.side{transform:translateX(-100%)}.side.open{transform:none}.main{margin-left:0}#menu{display:inline-block}.two,.detail{grid-template-columns:1fr}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.content{padding:1rem}}
+@media(max-width:600px){.dates{grid-template-columns:1fr}.dl{grid-template-columns:1fr}.top .date{display:none}.eqgrid.list .eq{flex-direction:column}.eqgrid.list .eq img{width:100%;height:160px}
+table.resp thead{display:none}table.resp tr{display:block;border-bottom:2px solid var(--line);padding:.5rem 0}table.resp td{display:flex;justify-content:space-between;border:0;padding:.3rem .2rem}table.resp td:before{content:attr(data-l);color:var(--muted)}}

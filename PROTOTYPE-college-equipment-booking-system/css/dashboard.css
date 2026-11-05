@@ -1,0 +1,2 @@
+.hero{background:linear-gradient(120deg,var(--navy),var(--navy2));color:#fff;border-radius:var(--r);padding:1.5rem}.hero h2{color:#fff}.hero .btn{margin:.3rem .5rem 0 0}.hero .btn.ghost{color:var(--navy)}
+.two{display:grid;grid-template-columns:1.4fr 1fr;gap:1rem;margin-top:1rem}

@@ -24,3 +24,34 @@ Part 7 - Short Assessed-Project Application - Community-Volunteer-Event-Coordina
 - One unknown: What happens if an event reaches to many volunteers while user are still filling out their registration form?
 - Who could answer it?: Event Organiser / Community Organisation Manager
 - Question to ask: Should the system places extra volunteers into waitlist, or should it reject the registration and suggest to a similar event?
+
+2. Actors
+
+
+| Actor	| Goal |
+|---|---|
+| Student |	View equipment availability and request equipment. |
+| Lecturer | View equipment availability and request equipment. |
+| Equipment Manager	| Manage equipment availability and handle equipment booking activities. |
+
+
+3. Use Cases
+
+| Use case	| Description	| 
+|---|---|
+| View Equipment Availability	| Allows a user to view available equipment. |
+| Create Equipment Booking	| Allows a user to submit an equipment booking request.	|
+|Record Equipment Return |	Represents recording the return of equipment.	|
+
+
+
+4. Question/Unknows
+- Can students and lecturers request all types of equipment?
+- Does the Equipment Manager approve or reject booking requests?
+- Who records equipment returns?
+- Can the Department Administrator access booking information?
+
+
+5. Reflection
+The use case diagram identifies the external roles and the main functions of the College Equipment Booking System. It also highlights areas where the responsibilities of different stakeholders need further confirmation.
+

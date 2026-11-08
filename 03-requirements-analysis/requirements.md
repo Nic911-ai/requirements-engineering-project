@@ -1,5 +1,6 @@
 Week 3-Requirements Analysis and specification
 
+1. Problem → Stakeholders → Elicitation → Analysis → Requirements
 1. Requirement or not?
 
 | Statement | What is it? | Why |
@@ -11,57 +12,75 @@ Week 3-Requirements Analysis and specification
 | The Equipment Manager approves all requests.	| Assumption |	Approval responsibility has not yet been confirmed. |
 
 
-2. Requirement Surgery
+2. Is this actually a requirement?
 
-1. "The system should be easy to use."
-- Problem: It is vague and does not explain how usability will be measured.
-- Improved candidate: The system should allow students and lecturers to locate equipment availability and access the request process without requiring administrative assistance.
-- Verification: Conduct a usability walkthrough with representative users.
+- “People are sometimes unsure whether a camera is available.” : Problem / observation
+- “Technicians need to know what equipment is due back.” : Stakeholder need / concern
+- “The system shall record the expected return date for each booking.” : Candidate requirement
+- “The college should build a mobile app.” : Solution idea
+- “We assume all users will have a college login.” : Assumption
+- “A lecturer wants reliable availability information before promising equipment.” : Stakeholder need / concern
 
-2. "The system should notify users about bookings."
-- Problem: It does not identify which users receive notifications or when notifications should be sent.
-- Improved candidate: The system shall provide users with information about the outcome of their booking requests.
-- Clarification needed: Should users receive this information through the system, email or another method?
-- Verification: Test whether the request outcome is made available to the relevant user.
+3. Requirements Surgery Overview
 
-3. "Staff should manage equipment."
-- Problem: It does not explain what management activities are required.
-- Improved candidate: The system shall allow authorised staff to manage equipment availability.
-- Clarification needed: Which staff roles are authorised, and what information can they change?
-- Verification: Check whether an authorised staff user can update equipment availability.
+1. Requirement : "The system shall be user-friendly."
+- FIND: Users should be able to use the booking system without unnecessary difficulty.
+- DIAGNOSE: "User-friendly" is vague and subjective. It does not identify which users or tasks are being considered. There is no measurable way to check it.
+- ASK: Which tasks should students and lecturers be able to complete easily?
+- REPAIR: The system shall allow a student or lecturer to view the equipment catalogue and open the details of a selected equipment item.
+- CHECK: Ask a test user to find an equipment item and open its details. Record whether the user can complete the task and any problems.
+
+2. Requirement: "The system shall notify users about bookings."
+- FIND: Users may need information about events or changes relating to their bookings.
+- DIAGNOSE: It does not identify which users receive notifications. It does not state what event triggers a notification. It does not explain what information the notification contains.
+- ASK: At which stages of the booking process should users receive notifications?
+- REPAIR: Do not finalise this requirement until the notification triggers, recipients and delivery method are confirmed.
+- CHECK: Once notification rules are agreed, test each specified event and check that the correct recipient receives the expected message through the agreed method.
+
+3. Requirement: "The system shall allow staff to create, edit and delete bookings and send reminders."
+- FIND: Staff may need to manage booking records and communicate with users.
+- DIAGNOSE: It does not identify which staff roles can perform each action and when a booking may be edited or deleted. Who receives reminders or when they are sent.
+- ASK: Which staff roles can create, edit or delete bookings, and what events should trigger reminders?
+- REPAIR: The system shall allow an authorised staff member to review a submitted booking request and record an approval or rejection decision.
+- CHECK: Submit a test request, sign in as an authorised staff member and check whether an approval or rejection decision can be recorded. leaves out important conditions and details.
+- WHO?: An authorised user, such as a technician or Equipment Manager.Exact roles need confirmation.
+- WHAT?: Display equipment availability.
+- WHEN?: When the user selects equipment and a date.
+- WHY?: To check availability before making a booking commitment.
+- HOW WILL WE KNOW?: The system shall allow an authorised user to view equipment availability for a selected date.
 
 
-3. Rewrite one requirement
+3. Develop Functional Requirements
 
-- Original: The system shall allow authorised staff to review booking requests and approve or reject them.
-- Rewritten requirement(s): _________________________________________________
-__________________________________________________________________________
-How could you verify it? __________________________________________________
 
-4. College Equipment Booking System case study
+| ID | Requirement | Source | How could we verify it? |
+|---|---|---|---|
+| FR-01 | The system shall allow an authorised user to view equipment availability for a selected date. | Technician's need	| Select an equipment item and date and check that its availability is displayed. |
+| The system shall allow a student or lecturer to submit a booking request for one equipment item by providing a start date and end date.	| College Equipment Booking System case information	| Log in as a student or lecturer, enter an equipment item and booking dates, and check that the request is submitted. |
+| The system shall allow authorised staff to review a submitted booking request and record an approval or rejection decision.	| College Equipment Booking System case information	| Log in as authorised staff, review a submitted request and check that an approval or rejection decision can be recorded. |
 
-A technician says: “I need to know whether a camera is available before I promise it to a lecturer.”
-What problem or need is behind the statement?
-__________________________________________________________________________
-__________________________________________________________________________
-What would you ask the technician to learn more?
-__________________________________________________________________________
-__________________________________________________________________________
-Write ONE candidate functional requirement.
-__________________________________________________________________________
-__________________________________________________________________________
-Identify ONE quality/security/privacy/accessibility issue that might need investigation.
-__________________________________________________________________________
-__________________________________________________________________________
-How could the candidate requirement be verified?
-__________________________________________________________________________
-__________________________________________________________________________
+4. Review the Functional Requirements
 
-5. Exit question
-Complete this sentence:
-“A good requirement is useful because ________________________________________________”
-___________________________________________________________________________________
+- The system shall allow an authorised user to view equipment availability for a selected date.
+1. Is the required behaviour clear? : Yes
+2. Who is involved? : Authorised user
+3. Have we assumed something we do not know? : The meaning of authorised user needs confirmation.
+4. Is anything important missing? : How availability is calculated.
+5. How could we verify it? : Check displayed availability.
+
+5. Quality requirements
+
+
+| ID	| Quality requirement	| Why does it matter?	| How could it be checked? |
+|---|---|---|---|
+| NFR-01	| The system shall require users to log in before accessing booking information. | This helps protect students' and staff members' booking information from unauthorised access. | Attempt to access booking information without logging in and check that access is denied. |
 
 6. Reflection
-Requirements analysis helped convert general problems into clearer candidate requirements. The functional requirements describe what the system may need to do, while the quality requirements describe how it should operate.
-Some important rules remain unknown, particularly booking permissions, overlapping dates, approval responsibilities and equipment return procedures. These need clarification before the requirements can be finalised.
+1. What makes a requirement difficult to understand?
+
+- A requirement is difficult to understand when it uses vague words, combines several functions, does not identify the users involved or leaves out important conditions and details.
+
+2. What information do you still need for your project?
+
+- I still need to know what happens when equipment is unavailable, what information users must provide when submitting a booking request, and which staff roles are responsible for reviewing and deciding on requests.
+

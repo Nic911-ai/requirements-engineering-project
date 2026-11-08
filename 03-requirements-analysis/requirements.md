@@ -1,6 +1,5 @@
 Week 3-Requirements Analysis and specification
 
-1. Problem → Stakeholders → Elicitation → Analysis → Requirements
 1. Requirement or not?
 
 | Statement | What is it? | Why |
@@ -11,76 +10,89 @@ Week 3-Requirements Analysis and specification
 | The system should use a mobile application.	| Solution idea |	Suggests a particular technology. |
 | The Equipment Manager approves all requests.	| Assumption |	Approval responsibility has not yet been confirmed. |
 
+2. Spot the Problems
 
-2. Is this actually a requirement?
+1. The system shall be very easy to use
+- Problems: "very easy to use" is subjective because diffrent users may have different opinions. Is hard to measur and verufy whether the system is easy to use
 
-- “People are sometimes unsure whether a camera is available.” : Problem / observation
-- “Technicians need to know what equipment is due back.” : Stakeholder need / concern
-- “The system shall record the expected return date for each booking.” : Candidate requirement
-- “The college should build a mobile app.” : Solution idea
-- “We assume all users will have a college login.” : Assumption
-- “A lecturer wants reliable availability information before promising equipment.” : Stakeholder need / concern
+2. The system shall quickly show available equipment.
+- Problems: "Quickly" is ambiguous becasue there is no specific response time given how quick should it be?
 
-3. Requirements Surgery Overview
+3. The system shall allows staff to book, cancel and approve bookings and send reminders.
+- Problems: It does not specify which kind of booking can be cancelled.
 
-1. Requirement : "The system shall be user-friendly."
-- FIND: Users should be able to use the booking system without unnecessary difficulty.
-- DIAGNOSE: "User-friendly" is vague and subjective. It does not identify which users or tasks are being considered. There is no measurable way to check it.
-- ASK: Which tasks should students and lecturers be able to complete easily?
-- REPAIR: The system shall allow a student or lecturer to view the equipment catalogue and open the details of a selected equipment item.
-- CHECK: Ask a test user to find an equipment item and open its details. Record whether the user can complete the task and any problems.
+3. Rewrite One Requirement
 
-2. Requirement: "The system shall notify users about bookings."
-- FIND: Users may need information about events or changes relating to their bookings.
-- DIAGNOSE: It does not identify which users receive notifications. It does not state what event triggers a notification. It does not explain what information the notification contains.
-- ASK: At which stages of the booking process should users receive notifications?
-- REPAIR: Do not finalise this requirement until the notification triggers, recipients and delivery method are confirmed.
-- CHECK: Once notification rules are agreed, test each specified event and check that the correct recipient receives the expected message through the agreed method.
+- Original: The system shall quickly show available equipment.
+- Rewritten requirement(s): The system shall allow an authorised user to select an equipment item and a date to view its availability.
+- How Could you verify it? : Select an equipment item and a date, then check if the system displays the availability for the slected equipment and date.
 
-3. Requirement: "The system shall allow staff to create, edit and delete bookings and send reminders."
-- FIND: Staff may need to manage booking records and communicate with users.
-- DIAGNOSE: It does not identify which staff roles can perform each action and when a booking may be edited or deleted. Who receives reminders or when they are sent.
-- ASK: Which staff roles can create, edit or delete bookings, and what events should trigger reminders?
-- REPAIR: The system shall allow an authorised staff member to review a submitted booking request and record an approval or rejection decision.
-- CHECK: Submit a test request, sign in as an authorised staff member and check whether an approval or rejection decision can be recorded. leaves out important conditions and details.
-- WHO?: An authorised user, such as a technician or Equipment Manager.Exact roles need confirmation.
-- WHAT?: Display equipment availability.
-- WHEN?: When the user selects equipment and a date.
-- WHY?: To check availability before making a booking commitment.
-- HOW WILL WE KNOW?: The system shall allow an authorised user to view equipment availability for a selected date.
+4. College Equipment Booking System Case Study
+- A technician says: “I need to know whether a camera is available before I promise it to a lecturer.”
+
+1. What problem or need is behind the statement?
+- How should the system display the camera availability, and should the techician be able to check availability for a soecific date?
+
+2. What would you ask the technician to learn more?
+- How should the system display the camera availability, and should the techician be able to check availability for a soecific date?
+
+3. Write ONE candidate functional requirement.
+- The system shall allow an authorised user to view camera availability for a selected date.
+
+4. Identify ONE quality/security/privacy/accessibility issue that might need investigation.
+- The system should ensure that only authorised users can access equipment booking information.
+
+5. How could the candidate requirement be verified?
+- Log in as an authorised user, select a camera and a date, and check whether the system displays its availability correctly.
+
+5. Exit Question
+- “A good requirement is useful because it clearly explains what the system needs to do and allows developers and stakeholders to understand, implement and verify the expected behaviour.”
+
+| Step | Answer |
+| --- | --- |
+| Find | "User-friendly" is vague. |
+| Diagnose | It does not explain which user, task or what it means. |
+| Ask | Can new volunteer able to register for an event wihout help? |
+| Repair | A new volunteer should be able to register for an available event without assistance from an administrator. |
+| Check | Test whether a ew volunteer can complete registration without assistance. |
+
+- The System Should Notify User Everything About Events.
+
+| Step | Answer |
+| --- | --- |
+| Find | "Notify users" is unclear. |
+| Diagnose | It does not explain the users, the evnet that will trigger a notification or how the notification method. |
+| Ask | How should it be receive and which event changes will be important to be notify. |
+| Repair | The system shall notify registered volunteers when an event they registered is cancelled or any changes are made. |
+| Check | Cancel a test event and verify that its registered volunteers receve the required notification. |
+
+- The System Should Create Events and Assign Volunteers.
+
+| Step | Answer |
+| --- | --- |
+| Find | The statemnt combines two different functions. |
+| Diagnose | Event creation and volunteer assigment may be performed by diffrent authorised user and require diffrent checks. |
+| Ask | Who can create events, and who can assign volunteers? |
+| Repair | The system shall allow authorised event organisers to create community events. |
+| Repair 2 | The system shall allow authorised volunteer coordinators to assign registered volunteers to specific event tasks. |
+| Check | Test event creation and task assignment separately using users with correct permissions. |
 
 
-3. Develop Functional Requirements
+4. Functional Requirements
 
 
 | ID | Requirement | Source | How could we verify it? |
-|---|---|---|---|
-| FR-01 | The system shall allow an authorised user to view equipment availability for a selected date. | Technician's need	| Select an equipment item and date and check that its availability is displayed. |
-| The system shall allow a student or lecturer to submit a booking request for one equipment item by providing a start date and end date.	| College Equipment Booking System case information	| Log in as a student or lecturer, enter an equipment item and booking dates, and check that the request is submitted. |
-| The system shall allow authorised staff to review a submitted booking request and record an approval or rejection decision.	| College Equipment Booking System case information	| Log in as authorised staff, review a submitted request and check that an approval or rejection decision can be recorded. |
+| --- | --- | --- | --- |
+| FR-01 | The system shall allow volunteers to view available community events, including each event's date, time, location and desciprtion. | Proposed stakeholder need to confirm through volunteer interviews. | Display several sample events and check all required details. |
+| FR-02 | The system shall allow registerd volunteers to register for an available community event. | Proposed stakholder confirm through volunteer interviews. | Register test volunteer for an available event and check the registration is recorded. |
+| FR-03 | The system shall allow authorised volunteer coordinators to assign registerd volunteers to specific event tasks. | Proposed stakeholders coordinator interviews. | Assign a registered volunteer to ask and verify the assigment appears correctly. |
+| FR-04 | The system shall allow authorised event organisers to view list of volunteers registerd for each event. | Evvent Organiser | Check that the organiser can view the correct volunteer list for a selected event. |
+| FR-05 | The system shall allow volunteers to provide their availability for community events | Volunteer | Enter a volunteer availability and check the inormation is saved correctly. |
+| FR-06 | The system shall allow authorised event supervisors to record volunteer attendance for an event | Event Supervisor | Check test volunteer as present and confirm the attendance record is saved. |
+| FR-07 | The system shall allow volunteers to view tasks assigned them for an event | Volunteer | Assign a task volunteer and check the volunteer can view correct task. |
+| FR-08 | The system shall notify registerd volunteers when event they registerd is cancelled. | Volunteer,Event Organiser | Cancel a test event and check whether registerd volunteer recive the required notification. 
+| FR-09 | The system shall restrict access to system functions according to each user authorised permissions. | IT Support | Log in using diffrent accounts and check each accout can access with its authorised functions. |
 
-4. Review the Functional Requirements
-
-- The system shall allow an authorised user to view equipment availability for a selected date.
-1. Is the required behaviour clear? : Yes
-2. Who is involved? : Authorised user
-3. Have we assumed something we do not know? : The meaning of authorised user needs confirmation.
-4. Is anything important missing? : How availability is calculated.
-5. How could we verify it? : Check displayed availability.
-
-5. Quality requirements
-
-
-| ID	| Quality requirement	| Why does it matter?	| How could it be checked? |
-|---|---|---|---|
-| NFR-01	| The system shall require users to log in before accessing booking information. | This helps protect students' and staff members' booking information from unauthorised access. | Attempt to access booking information without logging in and check that access is denied. |
-
-6. Reflection
-1. What makes a requirement difficult to understand?
-
-- A requirement is difficult to understand when it uses vague words, combines several functions, does not identify the users involved or leaves out important conditions and details.
-
-2. What information do you still need for your project?
-
-- I still need to know what happens when equipment is unavailable, what information users must provide when submitting a booking request, and which staff roles are responsible for reviewing and deciding on requests.
+5. Reflection
+Interview representatives from all difrrent stakholder groups and review. 
 

@@ -45,8 +45,8 @@ Week 3-Requirements Analysis and specification
 | ID | Requirement | Source | How could we verify it? |
 |---|---|---|---|
 | FR-01 | The system shall allow an authorised user to view equipment availability for a selected date. | Technician's need	| Select an equipment item and date and check that its availability is displayed. |
-| The system shall allow a student or lecturer to submit a booking request for one equipment item by providing a start date and end date.	| College Equipment Booking System case information	| Log in as a student or lecturer, enter an equipment item and booking dates, and check that the request is submitted. |
-| The system shall allow authorised staff to review a submitted booking request and record an approval or rejection decision.	| College Equipment Booking System case information	| Log in as authorised staff, review a submitted request and check that an approval or rejection decision can be recorded. |
+| FR-02 | The system shall allow a student or lecturer to submit a booking request for one equipment item by providing a start date and end date.	| College Equipment Booking System case information	| Log in as a student or lecturer, enter an equipment item and booking dates, and check that the request is submitted. |
+| FR-03| The system shall allow authorised staff to review a submitted booking request and record an approval or rejection decision.	| College Equipment Booking System case information	| Log in as authorised staff, review a submitted request and check that an approval or rejection decision can be recorded. |
 
 4. Review the Functional Requirements
 

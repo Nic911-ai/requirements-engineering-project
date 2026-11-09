@@ -1,1 +1,93 @@
+1. Part A — Review your earlier work
+1. Task A1 — Answer the questions
+
+1. Which requirement tells us that Booking is an important concept?
+- Answer: FR01 — A student can make more than one equipment booking.
+
+2. Which requirement identifies two attributes of Booking?
+- Answer: FR03 — Each booking records a start date and end date.
+The two attributes are:
+- startDate
+- endDate
+
+3. Which requirements indicate relationships involving Staff Member?
+- FR04: Staff members review booking requests.
+- FR05: Staff members manage equipment availability.
+
+
+2. Part B — Identify domain concepts
+2. Task B1 — Find candidate concepts
+
+
+| Candidate	| Class, attribute or action?	| Supporting requirement |
+|---|---|---|
+| Student	| Class	| FR01 |
+| Booking	| Class	| FR01, FR02, FR03, FR04, FR06 |
+| Start date |	Attribute	| FR03 |
+| Equipment	| Class	| FR02, FR05 |
+| Review |	Action / relationship	| FR04 |
+| Staff Member	| Class	| FR04, FR05 |
+
+2. Task B2 — Select the four main classes
+
+- student can make more than one equipment booking.
+- booking records the requested equipment and booking dates.
+- The system manages equipment availability and booking requests identify equipment items.
+- Staff members review booking requests and manage equipment availability.
+
+2. Task B3 — Identify uncertainty
+
+1.Why is it uncertain?
+- The requirements do not explicitly state that the system must store a student's email address.
+
+2. Who should confirm it?
+- The Department Administrator or relevant system stakeholder.
+
+3. Question to ask: "Does the system need to store the student's email address as part of their booking information?"
+
+3. Task E2 — Check what remains unknown
+
+
+| Association	| What is known?	| What needs clarification? |
+|---|---|---|
+| Student—Booking	| FR01 allows more than one booking per student.	| Is a booking associated with exactly one student? Are zero bookings permitted? |
+| Booking—Equipment	| Each booking identifies exactly one equipment item.	| How many bookings may reference the same equipment item over time?|
+| Staff Member—Booking	| Staff members review booking requests.	| Does one staff member review each booking, or can several staff members review it?|
+| Staff Member—Equipment	|Staff members manage equipment availability.	| Can several staff members manage the same equipment item? |
+
+
+3. Task E3 — Record open questions
+
+1. Can one booking be associated with more than one student, or must each booking belong to exactly one student?
+2. Can several bookings reference the same equipment item over time?
+3. Can several staff members review the same booking request?
+4. Can several staff members manage the availability of the same equipment item?
+
+4. Part F — Review your Class Diagram
+4. Task F1 — Requirements-to-model check
+
+
+| Requirement	| Where is it represented?	| Fully represented? |
+|---|---|---|
+| FR01	| Student—Booking relationship | Partially |
+| FR02	| Booking—Equipment relationship and 1 | Equipment end	Yes |
+| FR03	| startDate and endDate in Booking	| Yes |
+| FR04	| Staff Member—Booking relationship	| Yes |
+| FR05	| Staff Member—Equipment relationship	| Yes |
+| FR06	| Booking decision/status question	| Needs clarification |
+
+
+4. Part G — Campus Workshop Registration
+4. Task G1 — Identify classes
+The three main classes are:
+1. Student
+2. Registration
+3. Workshop
+
+4. Task G2 — Identify attributes
+
+- Class	Attributes
+- Student	studentId, name
+- Registration	registrationDate, status
+- Workshop	workshopCode, title
 

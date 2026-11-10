@@ -160,7 +160,4 @@ Optional extension — Facilitator
 Conceptual Class Diagram helps identify the important concepts in a system and shows how they are related. I also learned that classes represent important things in the problem domain, while attributes describe the information stored about them. The most challenging part was deciding the correct multiplicities for each relationship. Some requirements did not provide enough information to determine how many students or staff members could be associated with a booking. I learned that I should not guess when the requirements are unclear.
 The Use Case Diagram explains who interacts with the system and what they want to achieve. The Activity Diagram shows the steps involved in a process. The Class Diagram identifies the important concepts, their attributes and their relationships.
 It is important because making assumptions without confirmation could result in an incorrect system design. Documenting open questions allows the Requirements Engineer to ask stakeholders for clarification before development begins.
-
-
-
-I can improve my Class Diagram by reviewing the requirements, confirming unclear relationships and multiplicities with stakeholders, and checking that all important classes and attributes are supported by the requirements.
+Confirming unclear relationships and multiplicities with stakeholders, and checking that all important classes and attributes are supported by the requirements.

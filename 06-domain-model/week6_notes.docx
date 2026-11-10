@@ -1,1 +1,166 @@
+1. Part A — Review your earlier work
+1. Task A1
 
+1. Which requirement tells us that Booking is an important concept?
+
+- FR01: A student can make more than one equipment booking.
+- This tells us that Booking is an important concept because students can create multiple booking records.
+
+2. Which requirement identifies two attributes of Booking?
+
+- FR03: Each booking records a start date and an end date.
+The two attributes are:
+- startDate
+- endDate
+
+3. Which requirements indicate relationships involving Staff Member?
+- FR04: Staff members review booking requests.
+- FR05: Staff members manage equipment availability.
+- These requirements show that Staff Member is related to both Booking and Equipment.
+
+2. Part B — Identify domain concepts
+2. Task B1 — Find candidate concepts
+
+
+| Candidate	| Class, attribute or action?	| Supporting requirement |
+|---|---|---|
+| Student	| Class	| FR01 |
+| Booking	| Class	| FR01, FR02, FR03, FR04, FR06 |
+| Start date	| Attribute	FR03 |
+| Equipment	| Class	| FR02, FR05 |
+| Review	| Action / relationship	| FR04 |
+| Staff Member	| Class	| FR04, FR05 |
+
+
+2. Task B2 — Select the four main classes
+
+- Student	A student can make more than one equipment booking.
+- Booking	A booking records the equipment item and the start and end dates.
+- Equipment	Equipment is the item that students want to book, and staff manage its availability.
+- Staff Member	Staff members review booking requests and manage equipment availability.
+
+2. Task B3 — Identify uncertainty
+
+- Candidate attribute: studentEmail
+- Reason: A student's email address could be useful for identifying or contacting students, but none of the requirements explicitly states that the system must record it.
+- Stakeholder to ask: Department Administrator or the staff member responsible for student booking records.
+
+- Question to ask: "Does the College Equipment Booking System need to store each student's email address?"
+
+3. Part C — Create the Equipment Domain Diagram
+
+
+| Class 1	| Relationship	| Class 2	| Requirement |
+|---|---|---|---|
+| Student	| makes	| Booking	| FR01 |
+| Booking	| identifies	| Equipment	| FR02 |
+| Staff Member	| reviews	| Booking	| FR04 |
+| Staff Member	| manages availability of	| Equipment	| FR05 |
+
+
+4. Part D — Add relationships
+4. Task D3 — Read your relationships aloud
+
+1. Student makes Booking.
+2. Booking identifies Equipment.
+3. Staff Member reviews Booking.
+4. Staff Member manages availability of Equipment.
+
+5. Part E — Add multiplicities
+5. Task E1 — Confirmed multiplicity
+
+- FR02 states: "Each booking identifies exactly one equipment item."
+- Place 1 at the Equipment end of the Booking–Equipment relationship.
+
+5. Task E2 — Check what remains unknown
+
+
+| Association	| What is known?	| What needs clarification? |
+|---|---|---|
+| Student–Booking	| FR01 allows more than one booking per student.	| Does each booking belong to exactly one student? 
+| Booking–Equipment	| Each booking identifies exactly one equipment item.	| How many bookings may reference the same equipment item over time?|
+| Staff Member–Booking	| Staff members review booking requests.	| Is one reviewer assigned, or can several staff members review the same booking?|
+| Staff Member–Equipment	| Staff members manage equipment availability.	| Can several staff members manage the same equipment item?|
+
+
+
+5. Task E3 — Record open questions
+
+Write at least these three questions:
+1. Can one booking be associated with more than one student, or must each booking belong to exactly one student?
+2. Can several bookings reference the same equipment item over time?
+3. Can several staff members review the same booking request?
+4. Can several staff members manage the availability of the same equipment item?
+
+
+6. Part F — Review your Class Diagram
+6. Task F1 — Requirements-to-model check
+
+
+| Requirement	| Where is it represented?	| Fully represented? |
+|---|---|---|
+| FR01	| Student–Booking relationship	| Partially |
+| FR02	| Booking–Equipment relationship and 1 | Yes |
+| FR03	| Booking attributes	| Yes |
+| FR04	| Staff Member–Booking relationship	| Yes |
+| FR05	| Staff Member–Equipment relationship	| Yes |
+| FR06	| Booking decision/status question	| Needs clarification |
+
+- FR06 needs further clarification because the requirements say a booking may be approved or rejected, but do not explain how the decision is recorded or who is responsible for recording it.
+
+6. Task F2 — Compare previous models
+
+"The Use Case Diagram shows who interacts with the system and what they want to accomplish. The Activity Diagram shows the steps involved in checking equipment availability and submitting a booking. The Class Diagram identifies the main concepts involved, including Student, Booking, Equipment and Staff Member. However, FR06 does not clearly explain how the approval or rejection decision is recorded. Further clarification is needed to determine whether a status attribute should be added to Booking and how staff decisions are stored."
+
+7. Part G — New example: Campus Workshop Registration
+7. Task G1 — Identify classes
+
+The three main classes are:
+1. Student
+2. Registration
+3. Workshop
+Registration is important because it connects a particular student to a particular workshop.
+
+7. Task G2 — Identify attributes
+
+| Class	| Attributes | Supporting requirement |
+|---|---|---|
+| Student	| studentId, name	| WR01 |
+| Registration	| registrationDate, status	| WR07 |
+| Workshop	| workshopCode, title	| WR02 |
+
+7. Task G3 — Draw the associations
+
+
+| Class 1	| Relationship	| Class 2 |
+|---|---|---|
+| Student	 | has	| Registration |
+| Registration |	is for	| Workshop |
+
+
+- Student–Registration: 1 at the Student end and 0..* at the Registration end.
+- Registration–Workshop: 0..* at the Registration end and 1 at the Workshop end.
+
+
+7. Task G5 — Interpret the model
+1. One Student can have zero or many Registration records.
+2. Each Registration belongs to exactly one Student.
+3. One Workshop can have zero or many Registration records.
+4. Each Registration is for exactly one Workshop.
+Optional extension — Facilitator
+
+- Class: Facilitator
+- Relationship: Facilitator leads Workshop.
+- Multiplicity at Facilitator end: 1.
+- Multiplicity at Workshop end: 0..*.
+
+
+8. Reflection
+
+Conceptual Class Diagram helps identify the important concepts in a system and shows how they are related. I also learned that classes represent important things in the problem domain, while attributes describe the information stored about them. The most challenging part was deciding the correct multiplicities for each relationship. Some requirements did not provide enough information to determine how many students or staff members could be associated with a booking. I learned that I should not guess when the requirements are unclear.
+The Use Case Diagram explains who interacts with the system and what they want to achieve. The Activity Diagram shows the steps involved in a process. The Class Diagram identifies the important concepts, their attributes and their relationships.
+It is important because making assumptions without confirmation could result in an incorrect system design. Documenting open questions allows the Requirements Engineer to ask stakeholders for clarification before development begins.
+
+
+
+I can improve my Class Diagram by reviewing the requirements, confirming unclear relationships and multiplicities with stakeholders, and checking that all important classes and attributes are supported by the requirements.

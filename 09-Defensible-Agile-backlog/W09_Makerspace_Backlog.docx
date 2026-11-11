@@ -35,6 +35,19 @@ The Community Makerspace service will not include online payment, payment proces
 | Specification | Identify and documentt what users need. | Record the residents need to browse workshops by topic and date. |
 | Development | Build the software feature based on specification | Developers create a workshop listing with topic and date filters. |
 | Software Validation | Check whether the feature meets the requirements. | Test if residents can filter and see matching results. |
-| Evolution | Maintain or improve the software after feedback | Improve the filters if residents report difficulty finding. 
+| Evolution | Maintain or improve the software after feedback | Improve the filters if residents report difficulty finding. |
+
+
+2.2 Waterfall approaches
+
+Water approach move through stages in sequence, such as requirements, design, development and testing, as in order. Work is completed in repeated cycles, with planning, development and testing happening in each cycle. 
+
+
+3. Mini Requirements Catalogue
+
+
+| ID | Draft requirement/status | Source | How to Check |
+|---|---|---|---|
+| FR01 | 
 
 

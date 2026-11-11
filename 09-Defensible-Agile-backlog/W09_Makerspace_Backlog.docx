@@ -1,1 +1,40 @@
+1. Establish facts and unanswered questions
+
+
+| ID | Explicit facts - edvidace |
+|---|---|
+| F01 | The community makersoace currently advertise public workshop on noticeboard |
+| F02 | Browse workshops by topic and date. |
+| F03 | View each workshop's title, venue, date and remaining places. 
+| F04 | A user can submit a requst for a place at one workshop |
+| F05 | The request records by name and email. |
+| F06 | Organiser reviews each request and approves or rejects it. |
+
+
+1.2 Unknows
+
+
+| Unknown | Question | Decision|
+|---|---|---|
+| Group Booking | Whether residents can reuest multiple places for other people in one request. | Manager |
+| Cancellation | Whether residents can cancel a request or approved place abd rules to apply. | Manager 
+| Reminders | Whether the system should send reminders | Manager |
+
+
+1.3 Scope
+
+The Community Makerspace service will not include online payment, payment processing or payment collection. 
+
+2. Connect Process and RE Work
+
+2.1 Four-step process
+
+
+| Step | How | Features |
+|---|---|---|
+| Specification | Identify and documentt what users need. | Record the residents need to browse workshops by topic and date. |
+| Development | Build the software feature based on specification | Developers create a workshop listing with topic and date filters. |
+| Software Validation | Check whether the feature meets the requirements. | Test if residents can filter and see matching results. |
+| Evolution | Maintain or improve the software after feedback | Improve the filters if residents report difficulty finding. 
+
 
